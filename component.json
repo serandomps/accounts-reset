@@ -1,0 +1,23 @@
+{
+  "name": "accounts-reset",
+  "description": "accounts-reset component",
+  "local": [],
+  "styles": [
+    "styles.css"
+  ],
+  "scripts": [
+    "index.js"
+  ],
+  "templates": [
+    "template.html"
+  ],
+  "main": "index.js",
+  "dependencies": {
+    "serandomps/dust": "master",
+    "serandomps/serand": "master",
+    "serandomps/utils": "master",
+    "serandomps/form": "master",
+    "serandomps/accounts-profile": "master",
+    "serandomps/accounts-signup": "master"
+  }
+}
