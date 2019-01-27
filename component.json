@@ -17,7 +17,6 @@
     "serandomps/serand": "master",
     "serandomps/utils": "master",
     "serandomps/form": "master",
-    "serandomps/accounts-profile": "master",
-    "serandomps/accounts-signup": "master"
+    "serandomps/validators": "master"
   }
 }

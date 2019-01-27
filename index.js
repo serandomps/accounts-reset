@@ -1,32 +1,10 @@
 var dust = require('dust')();
 var serand = require('serand');
 var utils = require('utils');
+var validators = require('validators');
 var form = require('form');
 
 dust.loadSource(dust.compile(require('./template'), 'accounts-reset'));
-
-var validate = function (email, password, done) {
-    if (!password) {
-        return done(null, 'Please enter your new password');
-    }
-    if (password.length < 6) {
-        return done(null, 'Password should at least be 6 characters');
-    }
-    var pass = password.toLowerCase();
-    if (pass === email.toLowerCase()) {
-        return done(null, 'Password should not be equivalent to your email');
-    }
-    if (!/[0-9]/.test(password)) {
-        return done(null, 'Password should contain at least one number');
-    }
-    if (!/[a-z]/.test(password)) {
-        return done(null, 'Password should contain at one lower case letter');
-    }
-    if (!/[A-Z]/.test(password)) {
-        return done(null, 'Password should contain at one upper case letter');
-    }
-    done();
-};
 
 var configs = {
     password: {
@@ -34,7 +12,7 @@ var configs = {
             done(null, $('input', source).val());
         },
         validate: function (context, data, value, done) {
-            validate(context.email, value, function (err, error) {
+            validators.password(context.email, value, function (err, error) {
                 if (err) {
                     return done(err);
                 }
@@ -108,7 +86,7 @@ module.exports = function (ctx, container, options, done) {
                                     if (err) {
                                         return console.error(err);
                                     }
-                                    serand.direct('/recovered?email=' + data.email);
+                                    serand.direct('/signin');
                                 });
                             });
                         });
