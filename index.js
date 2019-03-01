@@ -34,12 +34,16 @@ var configs = {
 
 module.exports = function (ctx, container, options, done) {
     var sandbox = container.sandbox;
-    dust.render('accounts-reset', {id: container.id}, function (err, out) {
+    dust.render('accounts-reset', {
+        _: {
+            container: container.id
+        }
+    }, function (err, out) {
         if (err) {
             return done(err);
         }
         var elem = sandbox.append(out);
-        var lform = form.create(elem, configs);
+        var lform = form.create(container.id, elem, configs);
         lform.render({
             email: options.email
         }, {}, function (err) {
