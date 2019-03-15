@@ -90,7 +90,7 @@ module.exports = function (ctx, container, options, done) {
                                     if (err) {
                                         return console.error(err);
                                     }
-                                    serand.direct('/signin');
+                                    serand.redirect('/signin');
                                 });
                             });
                         });
